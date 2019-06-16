@@ -28,9 +28,10 @@
 	+ iterative refinement strategy (hierarchy of BiLSTM and max pooling)
 	+ model the inferential relationship between two or more given sentences
 	+ In particular, given two sentences - the premise p and the hypothesis h
-+ Natural Language Inference by Tree-Based Convolution and Heuristic Matching (Mou et al. (2016))
-	+ linear offset of vectors can capture relationships between two words
-	+ but it has not been exploited in sentence-pair relation recognition.(Mikolov et al., 2013b),
++ (refer) Natural Language Inference by Tree-Based Convolution and Heuristic Matching 
+	+ previous reference
+		+ linear offset of vectors can capture relationships between two words
+		+ but it has not been exploited in sentence-pair relation recognition.
 	+ Our study verifies that vector offset is useful in capturing generic sentence relationships
 	+ sentence embeddings are combined using a heuristic
 	+ m = [h1; h2; h1 − h2; h1 ◦ h2]  (concat, difference, product)
@@ -45,7 +46,7 @@
 		+ element-wise product, 용량관점에서 concat에 포함 (same)
 		+ element-wise difference, W0(h1−h2) = [W0, −W0][h1, h2]T
 	+ heuristic significantly improves the performance
-+ Supervised Learning of Universal Sentence Representations from Natural Language Inference Data (Conneau et al. (2017))
++ (refer) Supervised Learning of Universal Sentence Representations from Natural Language Inference Data 
 	+ hierarchical 장점 
 		+ (attentive 세심하게, 주의 깊게) 이전 레이어의 가중치를 받아 같은 동작을 다시 반복함으로써 attentive 해짐
 		+ concat 으로 계층마다 다른 관점들을 블랜딩 함으로써 표현이 주의깊은 추상화가 됨
