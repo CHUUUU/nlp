@@ -8,7 +8,7 @@
 - labels = ["neutral", "contradiction", "entailment"]  
 
 ## model evaluation
-|                  | Train ACC | Validation ACC | Test ACC |
-| :--------------- | :-------: | :------------: | :------: |
-| Baseline (Feed Forward)         |  -  |     -     |  -  |
-| HBMP           |  -  |     -     |  -  |
+|                  | Train ACC | Validation ACC | Test ACC | Paper ACC |
+| :--------------- | :-------: | :------------: | :------: | :------: |
+| Baseline (Feed Forward)         |  -  |     -     |  -  |  -  |
+| HBMP           |  -  |     -     |  -  |  -  |
