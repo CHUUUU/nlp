@@ -6,3 +6,9 @@
 - classification task
 - inferential relationship between two or more given sentences (premise, hypothesis) 
 - labels = ["neutral", "contradiction", "entailment"]  
+
+## model evaluation
+|                  | Train ACC | Validation ACC | Test ACC |
+| :--------------- | :-------: | :------------: | :------: |
+| Baseline (Feed Forward)         |  -  |     -     |  -  |
+| HBMP           |  -  |     -     |  -  |
