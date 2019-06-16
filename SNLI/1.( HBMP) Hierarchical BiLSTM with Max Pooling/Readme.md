@@ -23,7 +23,7 @@
 - config = {epoch:5, batch:256,  learning_rate:0.0005,  embedding_dim:300,  hidden_size:128,  linear_hidden_size:128}
 
 
-* [ ] HBMP: Hierarchical BiLSTM with Max Pooling
+## HBMP: Hierarchical BiLSTM with Max Pooling
   + https://arxiv.org/pdf/1808.08762.pdf
 	+ Summary
     	+ intro
