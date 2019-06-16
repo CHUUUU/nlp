@@ -24,7 +24,6 @@
 
 
 ## HBMP: Hierarchical BiLSTM with Max Pooling
-+ Summary
 + intro
 	+ iterative refinement strategy (hierarchy of BiLSTM and max pooling)
 	+ model the inferential relationship between two or more given sentences
@@ -55,7 +54,5 @@
 	+ fully connected layer 가 한개
 + iterative refinement architecture
 	+ 이전 LSTM 레이어의 info을 다음 레이어의 initialisation 함으로써 반복적 정제 아키텍쳐를 가진다고 함.
-+ 3-way softmax
-	+ 3-class
 + Max pooling is defined in the standard way of taking the highest value over each dimension of the hidden states = u
 + sentence encoder 에서의 u1, u2, u3 은 concat 하여 나오고, premise와 hypothesis, 2개의 encoder가 있음.
