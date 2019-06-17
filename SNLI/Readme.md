@@ -11,4 +11,4 @@
 |                  | Train ACC | Validation ACC | Test ACC | Paper ACC |
 | :--------------- | :-------: | :------------: | :------: | :------: |
 | Baseline (Feed Forward)         |  -  |     -     |  -  |  -  |
-| HBMP           |  -  |  79.59%  |  78.63%  |  86.6%  |
+| HBMP           |  -  |  79.62%  |  79.05%  |  86.6%  |
