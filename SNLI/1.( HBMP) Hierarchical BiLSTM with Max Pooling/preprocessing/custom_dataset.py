@@ -6,10 +6,8 @@ import nltk
 import os
 import pickle
 import preprocessing.vocab as vocab
-
 from nltk.corpus import stopwords  
 from torch.utils import data
-
 
 class dummy_dataset(data.Dataset):
     def __init__(self, custom_dataset):        
@@ -33,17 +31,10 @@ class Custom_dataset():
         self.vocab_list = custom_vocab.vocab_list
         self.word_to_index = custom_vocab.word_to_index
         self.index_to_word = custom_vocab.index_to_word
-        self.vocab_size = custom_vocab.vocab_size
-
-        self.train_mode = config.train_mode
-        self.test_mode = config.test_mode 
-        self.dev_mode = config.dev_mode
 
         self.stop_words = stopwords.words('english')
-        self.UNK = "[UNK]"
-        self.PAD = "[PAD]"
 
-        self.labels = ["neutral", "contradiction", "entailment"] 
+        self.labels = config.labels
         self.label_to_index = {
             self.labels[0] : 0,  
             self.labels[1] : 1, 
@@ -66,7 +57,7 @@ class Custom_dataset():
 
     def __find_missing_word(self, word):
         if [word] not in self.no_duplication_words: # 찾는 형태가 배열이여야지 찾음
-            return self.UNK
+            return config.UNK
         else:
             return word
 
@@ -104,9 +95,9 @@ class Custom_dataset():
             print(label, " : ",  all_label.count(label))
 
     def __main_flow(self, path, mode):
-        if mode ==  self.train_mode:
+        if mode ==  config.train_mode:
             print("--train data 전처리를 시작합니다--")
-        elif mode ==  self.test_mode:
+        elif mode ==  config.test_mode:
             print("--test data 전처리를 시작합니다--")
         else:
             print("--dev data 전처리를 시작합니다--")
@@ -172,10 +163,10 @@ class Custom_dataset():
         return index_data
 
     def __load_or_preprocessing(self, mode):
-        if mode ==  self.train_mode:
+        if mode ==  config.train_mode:
             path = self.path_train
             file_name = config.preprocessed_train_file
-        elif mode == self.test_mode:
+        elif mode == config.test_mode:
             path = self.path_test
             file_name = config.preprocessed_test_file
         else:
@@ -192,9 +183,9 @@ class Custom_dataset():
         return data
 
     def get_data(self):
-        index_train_data = self.__load_or_preprocessing(self.train_mode)
-        index_test_data = self.__load_or_preprocessing(self.test_mode)
-        index_dev_data = self.__load_or_preprocessing(self.dev_mode)
+        index_train_data = self.__load_or_preprocessing(config.train_mode)
+        index_test_data = self.__load_or_preprocessing(config.test_mode)
+        index_dev_data = self.__load_or_preprocessing(config.dev_mode)
 
         index_train_data = dummy_dataset(index_train_data)
         index_test_data = dummy_dataset(index_test_data)

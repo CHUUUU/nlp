@@ -6,10 +6,6 @@ import os
 
 class create_vocab():
     def __init__(self):
-        self.train_mode = config.train_mode
-        self.test_mode = config.test_mode 
-        self.dev_mode = config.dev_mode
-        self.all_mode = config.all_mode
         self.UNK = config.UNK
         self.PAD = config.PAD
         self.labels = config.labels
@@ -55,8 +51,6 @@ class create_vocab():
         self.vocab_list.extend(list(sorted(set(all_words_array))))
         self.word_to_index = { word:i for i,word in enumerate(self.vocab_list) }
         self.index_to_word = { i:word for i,word in enumerate(self.vocab_list) }
-        self.vocab_size = len(self.word_to_index)
-        print("vocab_size : ", self.vocab_size)
 
     def __save_words(self):
         with open(config.vocab_list, 'wb') as f:
@@ -68,9 +62,6 @@ class create_vocab():
         with open(config.index_to_word, 'wb') as f:
             pickle.dump(self.index_to_word, f)
         print("index_to_word 가 저장되었다.")
-        with open(config.vocab_size, 'wb') as f:
-            pickle.dump(self.vocab_size, f)
-        print("vocab_size 가 저장되었다.")
 
     def __load_words(self):
         with open(config.vocab_list, 'rb') as f:
@@ -82,9 +73,6 @@ class create_vocab():
         with open(config.index_to_word, 'rb') as f:
             self.index_to_word = pickle.load(f) 
         print("index_to_word 를 불러왔다.")
-        with open(config.vocab_size, 'rb') as f:
-            self.vocab_size = pickle.load(f) 
-        print("vocab_size 를 불러왔다.")
 
     def __main_flow(self):
         ################# 1. vocab 전처리 
@@ -107,16 +95,16 @@ class create_vocab():
         self.__indexing_vocab(all_words_array)
 
     def set_data(self, mode):
-        if mode == self.all_mode:
+        if mode == config.all_mode:
             self.path_list = [config.path_train, config.path_test, config.path_dev]
-        elif mode == self.train_mode:
+        elif mode == config.train_mode:
             self.path_list = [config.path_train]
-        elif mode == self.test_mode:
+        elif mode == config.test_mode:
             self.path_list = [config.path_test]
         else:
             self.path_list = [config.path_dev]
 
-        file_list = [config.vocab_list, config.vocab_size, config.word_to_index, config.index_to_word]
+        file_list = [config.vocab_list, config.word_to_index, config.index_to_word]
         for file in file_list:
             if os.path.isfile(file):
                 exist = True
