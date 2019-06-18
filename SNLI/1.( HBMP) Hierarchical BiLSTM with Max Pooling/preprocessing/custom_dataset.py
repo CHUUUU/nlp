@@ -27,7 +27,7 @@ class Custom_dataset():
         self.path_dev = config.path_dev
 
         custom_vocab = vocab.create_vocab()
-        custom_vocab.set_data(mode=config.all_mode)
+        custom_vocab.set_data(mode=config.vocab_mode)
         self.vocab_list = custom_vocab.vocab_list
         self.word_to_index = custom_vocab.word_to_index
         self.index_to_word = custom_vocab.index_to_word
@@ -132,14 +132,15 @@ class Custom_dataset():
             (gold_label, word_array1, word_array2) = data_tuple
             if gold_label not in self.labels: # 레이블 없는 것 예외처리
                 continue
-            if len(word_array1) < config.min_seq_cut:
-                continue
-            if len(word_array2) < config.min_seq_cut:
-                continue
-            if len(word_array1) > config.max_seq_cut:
-                continue
-            if len(word_array2) > config.max_seq_cut:
-                continue
+            if not config.use_outlier_sentence:    
+                if len(word_array1) < config.min_seq_cut:
+                    continue
+                if len(word_array2) < config.min_seq_cut:
+                    continue
+                if len(word_array1) > config.max_seq_cut:
+                    continue
+                if len(word_array2) > config.max_seq_cut:
+                    continue
             
             index_label = self.label_to_index[gold_label]
             index_sent1 = [self.word_to_index[word] for word in word_array1]
@@ -158,8 +159,9 @@ class Custom_dataset():
             index_data.append((index_label, index_sent1, index_sent2))
      
         print("--전처리가 끝났습니다--")
-        self.__word_count_statistics(stat_length)
-        self.__label_count_statistics(stat_label)
+        if config.show_statistics:
+            self.__word_count_statistics(stat_length)
+            self.__label_count_statistics(stat_label)
         return index_data
 
     def __load_or_preprocessing(self, mode):

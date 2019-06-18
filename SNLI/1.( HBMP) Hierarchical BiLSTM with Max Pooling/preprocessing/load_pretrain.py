@@ -3,7 +3,7 @@ import torch
 import os
 import numpy as np
 
-def get_pretrain_embedding(vocab): # list
+def get_pretrain_embedding(vocab_list):
     if os.path.exists(config.glove_npy):
         embedding = np.load(config.glove_npy)
         embedding = torch.FloatTensor(embedding)
@@ -18,11 +18,11 @@ def get_pretrain_embedding(vocab): # list
                 word = values[0]
                 coefs = np.asarray(values[1:], dtype='float32')
                 pretrain_emb[word] = coefs
-        vocab_size = len(vocab)
+        vocab_size = len(vocab_list)
         embedding = np.zeros((vocab_size, 300))
 
         missing_words = []
-        for n, word in enumerate(vocab):
+        for n, word in enumerate(vocab_list):
             vector = pretrain_emb.get(word)
             if vector is not None:
                 embedding[n] = vector
