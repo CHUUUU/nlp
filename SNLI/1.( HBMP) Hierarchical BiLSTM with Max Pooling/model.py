@@ -5,18 +5,18 @@ from torch.autograd import Variable
 from preprocessing.load_pretrain import get_pretrain_embedding
 
 class Sentence_Encoder(nn.Module):
-    def __init__(self, vocab):
+    def __init__(self, vocab_list):
         super(Sentence_Encoder, self).__init__()
+        self.embedding = nn.Embedding(len(vocab_list), config.embedding_dim)
+        if config.use_glove:
+            weight = get_pretrain_embedding(vocab_list)
+            self.embedding = nn.Embedding.from_pretrained(weight)
+            print("glove embedding : ", self.embedding)
         stack = 1
         self.LSTM1 = nn.LSTM(config.embedding_dim, config.hidden_size, num_layers=stack, bidirectional=True) 
         self.LSTM2 = nn.LSTM(config.embedding_dim, config.hidden_size, num_layers=stack, bidirectional=True) 
         self.LSTM3 = nn.LSTM(config.embedding_dim, config.hidden_size, num_layers=stack, bidirectional=True) 
-        self.embedding = nn.Embedding(len(vocab), config.embedding_dim)
-        if config.use_gensim:
-            weight = get_pretrain_embedding(vocab)
-            self.embedding = nn.Embedding.from_pretrained(weight)
-            print("in")
-            print(self.embedding)
+
         self.init_h = Variable(torch.zeros(stack*2, config.batch, config.hidden_size).cuda(device=config.gpu))
         self.init_c = Variable(torch.zeros(stack*2, config.batch, config.hidden_size).cuda(device=config.gpu))
         self.max_pool = nn.MaxPool1d(config.max_seq) 
@@ -44,11 +44,10 @@ class Sentence_Encoder(nn.Module):
 
 
 class Classifier(nn.Module):
-    def __init__(self, vocab):
+    def __init__(self, vocab_list):
         super(Classifier, self).__init__()
-        self.sent_enc_p = Sentence_Encoder(vocab) 
-        self.sent_enc_h = Sentence_Encoder(vocab) 
-        self.relu = nn.ReLU(inplace=True)
+        self.sent_enc_p = Sentence_Encoder(vocab_list) 
+        self.sent_enc_h = Sentence_Encoder(vocab_list) 
         self.leaky_relu = nn.LeakyReLU(negative_slope=0.2, inplace=True)
         self.dropout = nn.Dropout(p=config.linear_dropout_keep_prob) 
         

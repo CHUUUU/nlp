@@ -11,7 +11,10 @@ linear_hidden_size = 128
 use_stop_word = False
 use_UNK = False
 use_remove_low_freq = False
-use_gensim = True
+use_outlier_sentence = False
+show_statistics = True # 전처리 할 때만 볼 수 있음
+use_glove = True
+vocab_mode = 3 # all_mode
 
 low_freq = 2
 max_seq = 21
