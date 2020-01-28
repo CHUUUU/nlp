@@ -16,3 +16,18 @@ python predict.py
 pytorch  
 sentencepiece  
 pandas
+
+
+# predict.py  
+안녕하세요 ㅎㅎ  
+  
+너무 힘드네  
+힘내요ㅜ  
+  
+배고파  
+나 말고 경훈이 한테 말해요  
+  
+너무 힘이 듭니다  
+아 이런 ㅜㅜ  
+
+
