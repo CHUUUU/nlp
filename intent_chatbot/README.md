@@ -6,9 +6,11 @@ https://github.com/songys/Chatbot_data
 
 # train  
 python train.py  
+(config.py 에서 batch_size = 32 로 변경)
 
 # predict  
 python predict.py  
+(config.py 에서 batch_size = 1 로 변경)
 
 # install  
 pytorch  
