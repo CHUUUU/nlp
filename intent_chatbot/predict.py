@@ -18,8 +18,6 @@ if __name__ == "__main__":
 
     spm = sentence_piece_model()
     spm.train_or_load()
-
-    c.batch_size = 1
     
     print("안녕하세요 ㅎㅎ")
 
