@@ -6,17 +6,14 @@ https://github.com/songys/Chatbot_data
 
 # train  
 python train.py  
-(config.py 에서 batch 32로 변경)
 
 # predict  
 python predict.py  
-(config.py 에서 batch 1로 변경)
 
 # install  
 pytorch  
 sentencepiece  
 pandas
-
 
 # predict.py  
 안녕하세요 ㅎㅎ  
@@ -30,4 +27,5 @@ pandas
 너무 힘이 듭니다  
 아 이런 ㅜㅜ  
 
+# 도움이 되셨다면 star
 
