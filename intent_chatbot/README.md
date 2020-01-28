@@ -17,6 +17,9 @@ pytorch
 sentencepiece  
 pandas
 
+# model
+Transformer encoder
+
 # predict.py  
 안녕하세요 ㅎㅎ  
   
