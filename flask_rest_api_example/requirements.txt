@@ -1,0 +1,9 @@
+beautifulsoup4==4.8.2
+bs4==0.0.1
+Click==7.0
+Flask==1.1.1
+itsdangerous==1.1.0
+Jinja2==2.11.1
+MarkupSafe==1.1.1
+soupsieve==1.9.5
+Werkzeug==1.0.0
