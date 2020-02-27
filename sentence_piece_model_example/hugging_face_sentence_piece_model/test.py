@@ -33,6 +33,11 @@ if __name__ == "__main__":
     # save_sentense_piece_model()
     load_sentence_piece_model()
 
+    
+#     ['<s>', 'ë°°ê³łíĮĮ', 'ìļĶ', '</s>']
+#     [1, 0, 0, 1]
+#     [0, 6219, 266, 2]
+#     배고파요
 
 
 
