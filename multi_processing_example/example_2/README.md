@@ -1,14 +1,13 @@
 ![](diagram.png)
 
-
-# 실행결과 example_1.py
-sleeping 1 second
-sleeping 1 second
-Process id :  1712
-done sleeping
-Process id :  6564
-done sleeping
-1.1sec
+# 실행결과 example_1.py  
+sleeping 1 second  
+sleeping 1 second  
+Process id :  1712  
+done sleeping  
+Process id :  6564  
+done sleeping  
+1.1sec  
 
 
 # 실행결과 example_2.py
