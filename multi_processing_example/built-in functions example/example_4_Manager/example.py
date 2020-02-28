@@ -14,6 +14,7 @@ def do_something(share_dic, input_arg):
     input_arg.reverse()
 
 if __name__ == "__main__":
+    # 동시성 프로그래밍을 할 때 보통 가능한 한 공유된 상태를 사용하지 않는 것이 최선
     manager = Manager()  # manager 는 Process 간의 데이터 공유가 가능하게 한다.
     share_dic = manager.dict()
     input_arg = manager.list(range(10))
