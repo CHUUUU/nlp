@@ -27,9 +27,3 @@ if __name__ == "__main__":
     print(str(round(time.time()-start, 2)) + "sec")
     print(share_dic)
     print(input_arg)
-    
-#     Process id : 14664
-#     Process id : 2472
-#     0.27sec
-#     {1: '1', '2': 2, 0.25: None, 100: 100}
-#     [9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 100]
