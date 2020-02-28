@@ -14,7 +14,7 @@ def do_something(share_dic, input_arg):
     input_arg.reverse()
 
 if __name__ == "__main__":
-    manager = Manager()
+    manager = Manager()  # manager 는 Process 간의 데이터 공유가 가능하게 한다.
     share_dic = manager.dict()
     input_arg = manager.list(range(10))
 
