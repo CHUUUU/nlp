@@ -24,7 +24,15 @@ if len(sys.argv) == 2:
 else:
     warnings.warn("missing URL")
 
+# python example.py
 # ['example.py']
 # ##########
 # example.py:25: UserWarning: missing URL
 #   warnings.warn("missing URL")
+
+
+# python example.py http://google.com
+# ['example.py', 'http://google.com']
+# ##########
+# example.py:21: UserWarning: the connection is insecure
+#   warnings.warn('the connection is insecure')
