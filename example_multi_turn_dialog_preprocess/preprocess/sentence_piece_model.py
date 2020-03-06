@@ -17,13 +17,11 @@ def load_sentence_piece_model(cfg):
     if cfg.save_spm_model:
         save_sentense_piece_model(cfg)
     tokenizer = ByteLevelBPETokenizer(cfg.path_sentence_piece_vocab, cfg.path_sentence_piece_model)
+    test(tokenizer)
     return tokenizer
 
-# test
-if __name__ == "__main__":
-    save_sentense_piece_model()
-    tokenizer = load_sentence_piece_model()
-
+def test(tokenizer):
+    # test
     tokenizer.enable_truncation(max_length=512)
     encoding = tokenizer.encode("콜")
     print(encoding.tokens)

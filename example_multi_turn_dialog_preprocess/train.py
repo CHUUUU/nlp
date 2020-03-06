@@ -9,7 +9,6 @@ def get_config():
     parser.add_argument("-b", "--batch", default=2, type=int, required=True)
     parser.add_argument("-c", "--config", default="./config/config_default.json", type=str, required=False)
     args = parser.parse_args()
-    print(args.config)
     cfg = Config.load(args.config)
     cfg.batch = args.batch
     return cfg
