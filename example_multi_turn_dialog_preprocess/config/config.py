@@ -7,7 +7,8 @@ class Config(dict):
     __setattr__ = dict.__setitem__
 
     @classmethod
-    def load(cls, file="./config/config_default.json"):
+    def load(cls, file):
+        print(file)
         with open(file, 'r') as f:
             config = json.loads(f.read())
             return Config(config)

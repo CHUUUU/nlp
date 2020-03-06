@@ -4,5 +4,6 @@
   "path_sentence_piece_model": "./preprocess/sentence_piece_model/ko-merges.txt",
   "path_sentence_piece_vocab": "./preprocess/sentence_piece_model/ko-vocab.json",
   "max_seq": 512,
-  "epoch": 1
+  "epoch": 1,
+  "save_spm_model": false
 }

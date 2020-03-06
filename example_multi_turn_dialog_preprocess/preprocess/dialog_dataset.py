@@ -1,16 +1,17 @@
 import sys, os
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
+import torch
+
 from preprocess.data_read import get_data
 from preprocess.sentence_piece_model import load_sentence_piece_model
-
 from torch.utils.data import Dataset
 from torch.nn.utils.rnn import pad_sequence
-import torch
+
 
 class dialog_dataset(Dataset):
     def __init__(self, cfg):
-        self.dialog_dataset = get_data()
-        self.spm = load_sentence_piece_model()
+        self.dialog_dataset = get_data(cfg)
+        self.spm = load_sentence_piece_model(cfg)
         self.spm.enable_truncation(max_length=cfg.max_seq)
         self.SEP = self.spm.token_to_id("<sep>")
         self.PAD = self.spm.token_to_id("<pad>")

@@ -1,21 +1,20 @@
 import sys, os
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
-from config.config import Config
-
-from pathlib import Path
 import warnings
 
-cfg = Config.load()
+from pathlib import Path
+
+
 warnings.filterwarnings("error")
 
-def get_data_file_path_list():
+def get_file_path_list(cfg):
     paths = [str(x) for x in Path(cfg.path_data).glob("**/*.txt")]
     if len(paths) == 0:
         warnings.warn("no text data, check ./data")
     return paths
 
-def get_data():
-    paths = get_data_file_path_list()
+def get_data(cfg):
+    paths = get_file_path_list(cfg)
     dialog_list = []
     for path in paths:
         with open(path, encoding='utf-8') as f:
