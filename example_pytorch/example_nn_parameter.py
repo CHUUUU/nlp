@@ -2,6 +2,13 @@ import torch
 import torch.nn as nn
 from torch.autograd import Variable
 
+# tensor : n-d array
+# Variable : computational graph 의 node 역할, data 나 gradient 를 저장
+#   - x = Variable(torch.randn(n1, n2))
+#   - x.data 는 tensor
+#   - x.grad 는 Variable (loss 에 대한 gradient 정보값을 가짐)
+# Module : NN 에서의 layer 해당, 상태나 학습 가능한 weight 를 저장
+
 class model_one(nn.Module):
     def __init__(self):
         super().__init__()
@@ -45,6 +52,7 @@ if __name__ == '__main__':
 
     def show_parameters(model, model_name):
         print(model_name)
+        print(list(model.parameters())
         for param in model.parameters():
             print(type(param.data), param.size())
 
