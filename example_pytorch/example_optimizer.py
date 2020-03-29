@@ -13,7 +13,7 @@ class network(nn.Module):
 
     def forward(self, x):
         x = self.conv1(x)
-        x = F.relu(x, inplace=True)
+        x = F.relu(x, inplace=True)  # inplace=True , True 는 직접 (복사본이 아닌 원본)값을 변경한다는 뜻
         x = F.max_pool2d(x, (2, 2))
         x = self.conv2(x)
         x = F.relu(x, inplace=True)
