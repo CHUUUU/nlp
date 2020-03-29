@@ -10,7 +10,8 @@ input = Variable(torch.ones(1, 1, 3, 3), requires_grad=True)
 # requires_grad 를 선언해주어야지 backward 가 가능
 
 func = nn.Conv2d(1, 1, 3)
-print(func.weight)  # func 에 (1, 1, 3)에 대한 weight 를 가지고 있음
+# func = nn.Conv2d(1, 1, 3, bias=False)
+print("func.weight : ", func.weight)  # func 에 (1, 1, 3)에 대한 weight 를 가지고 있음
 # nn 은 자동으로 bias 를 가지고 있고 True 이다.
 out = func(input)
 out.backward()
@@ -33,3 +34,6 @@ print("input.grad : ", input.grad)
 # input.grad :  tensor([[[[-0.1544,  0.0974,  0.1198],
 #                           [-0.1294,  0.2110, -0.0968],
 #                           [ 0.1233,  0.0678,  0.2074]]]])
+
+# ∂ out / ∂ in = (w * in + b) / ∂ in = w
+# func.weight 와 input.grad 의 값이 같아야 하는데 다름.. 예제에선 같았는데.
