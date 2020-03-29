@@ -1,4 +1,4 @@
-# nn  - 레이어에 필요한 모든것
+# nn  - 레이어 형태로 생각하고 만들어진 모듈
 #   - Parameter
 #   - Containers
 #   - Conv
