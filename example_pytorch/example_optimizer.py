@@ -14,6 +14,7 @@ class network(nn.Module):
     def forward(self, x):
         x = self.conv1(x)
         x = F.relu(x, inplace=True)  # inplace=True , True 는 직접 (복사본이 아닌 원본)값을 변경한다는 뜻
+                                     # 복사본을 안 만듦으로써, 메모리를 아낄 수 있다.
         x = F.max_pool2d(x, (2, 2))
         x = self.conv2(x)
         x = F.relu(x, inplace=True)
