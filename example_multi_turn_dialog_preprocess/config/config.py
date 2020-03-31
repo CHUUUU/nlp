@@ -8,7 +8,6 @@ class Config(dict):
 
     @classmethod
     def load(cls, file):
-        print(file)
         with open(file, 'r') as f:
             config = json.loads(f.read())
             return Config(config)
