@@ -10,3 +10,7 @@ args = parser.parse_args()
 
 print(args)
 print(args.func(1, 2))
+
+# python .\example_set_default_2.py
+# Namespace(func=<function add at 0x00000202EEE108B8>)
+# 3
