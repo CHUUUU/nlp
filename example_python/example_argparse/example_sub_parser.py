@@ -10,6 +10,11 @@ parser_b = subparser.add_parser("b")
 parser_b.add_argument("-y")
 print(parser.parse_args(["b", "-y", "2"]))
 
+print("parser_a : ", parser_a)
+print("parser_b : ", parser_b)
+print("parser : ", parser)
+print(parser.parse_args())
 # Namespace(x='1')
 # Namespace(y='2')
+
 
