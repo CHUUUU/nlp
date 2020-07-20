@@ -1,7 +1,8 @@
 future==0.18.2
 numpy==1.18.5
 Pillow==7.2.0
-tokenizers==0.8.0
+tokenizers==0.5.2
+tqdm==4.48.0
 torch==1.5.1
 torchvision==0.6.1
-tqdm==4.48.0
+
