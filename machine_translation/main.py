@@ -85,10 +85,9 @@ if __name__ == "__main__":
                         print(en_spm.decode(en_tar.view(16, -1)[0].tolist()))
 
                 acc = 100 * (correct.cpu().numpy() / total)
-                acc = 100 * (correct.cpu().numpy() / total)
                 acc_test_list.append(acc)
                 torch.save(model.state_dict(), "model.pth")
-                print("model save")
+                print("model save, acc : ", acc)
 
 
     print("test acc : ", acc_test_list)
