@@ -8,8 +8,8 @@ https://github.com/jadore801120/attention-is-all-you-need-pytorch
 epoch :  0  step :  0  loss :  10.376667976379395        (early step)  
 epoch :  4  step :  29699  loss :  0.07692323625087738   (last step)    
 
-final acc : 81.03  (6 epoch)
-model size > 25MB, can't upload, try to train for 4~5H,  
+final acc : 81.03  (6 epoch)  
+model size > 25MB, can't upload, try to train for 4~5H  
 
 - early step
     - inference   
