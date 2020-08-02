@@ -9,7 +9,7 @@ https://github.com/jadore801120/attention-is-all-you-need-pytorch
     - inference   
     <bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos
 ><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos>
-
+    
     - label    
     아부 사예프 단체의 고위 지도자라고 말해지는 모빈 압둘라작은 2000년 말레이시아의 한 휴양지에서 21명을 납치하여 수배중이었다   
 
@@ -82,4 +82,10 @@ s><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos>
     알라론트레이딩의 애널리스트인 필 플린은 “거래업자들이 휴일을 앞두고 대대적인 매수청산에 나섰다”며 “취업 전망이 어둡게
 나오고 달러화가 약세를 기록하는 등 나쁜 뉴스가 계속 나왔다”고 밝혔다.    
 
+- loss 2
+    - inference    
+    최근 시위가 과격화 되는 달라고 보여 밝혔으나,,,에서는 이로써 진압 경찰에 밝혀지지 밝혀지지 않았다.
+
+    - label      
+    최근 시위가 과격화 되는 양상을 보여왔으나 다행히 이날 집회에서는 시위대와 진압 경찰간의 충돌은 발생하지 않았다.    
 
