@@ -111,6 +111,7 @@ if __name__ == "__main__":
                 # acc_test_list.append(acc)
                 torch.save(model.state_dict(), "model.pth")
                 # print("model save, acc : ", acc)
+                print("model save")
 
 
     print("test acc : ", acc_test_list)
