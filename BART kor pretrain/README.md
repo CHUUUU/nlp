@@ -8,6 +8,7 @@ https://github.com/jadore801120/attention-is-all-you-need-pytorch
     - epoch 90   
     - batch 32   
     - layer 3   
+    - I cut all layer's units in half.
 
 # result 
 - loss 10
