@@ -110,7 +110,7 @@ if __name__ == "__main__":
                 # acc = 100 * (correct.cpu().numpy() / total)
                 # acc_test_list.append(acc)
                 torch.save(model.state_dict(), "model.pth")
-                print("model save, acc : ", acc)
+                # print("model save, acc : ", acc)
 
 
     print("test acc : ", acc_test_list)
