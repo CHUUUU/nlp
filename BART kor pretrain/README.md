@@ -9,7 +9,7 @@ https://github.com/jadore801120/attention-is-all-you-need-pytorch
     - batch 32   
     - layer 3   
     - I cut all layer's units in half.
-    - GPU Nvidia 2080 (8GB)
+    - GPU Nvidia RTX 2080 (8GB)
  
 # result 
 - loss 10
