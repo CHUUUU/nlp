@@ -108,4 +108,11 @@ https://github.com/jadore801120/attention-is-all-you-need-pytorch
     
     - label   
     미국 노스웨스트 에어라인 소속 항공기가 6일(현지시간) 운행 중 문제를 일으켜 승객들이 위험에 노출되 는 사고가 발생했다.   
+    
+- loss 1.0    
+    - inference    
+    터너의 딸 미아 터너는 이번 사건은 대해 받았다고 말했다.   
+
+    - label   
+    터너의 딸 미아 터너는 이번 보도에 충격을 받았다고 말했다.   
 
