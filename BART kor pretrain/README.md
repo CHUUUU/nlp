@@ -116,7 +116,7 @@ https://github.com/jadore801120/attention-is-all-you-need-pytorch
     - label   
     터너의 딸 미아 터너는 이번 보도에 충격을 받았다고 말했다.   
     
-- loss 0.9    
+- loss 0.9 (150 epoch)   
     - inference   
     다른 법원들도 변호사들이 변론 취지서를 온라인으로 제출하는 데 허용하고 있다.   
 
