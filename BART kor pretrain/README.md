@@ -7,8 +7,7 @@ https://github.com/jadore801120/attention-is-all-you-need-pytorch
 # result 
 - loss 10
     - inference   
-    <bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos
-><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos>
+    <bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos>
     
     - label    
     아부 사예프 단체의 고위 지도자라고 말해지는 모빈 압둘라작은 2000년 말레이시아의 한 휴양지에서 21명을 납치하여 수배중이었다   
@@ -89,3 +88,19 @@ s><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos>
     - label      
     최근 시위가 과격화 되는 양상을 보여왔으나 다행히 이날 집회에서는 시위대와 진압 경찰간의 충돌은 발생하지 않았다.    
 
+- loss 1.5
+    - inference   
+    대만은 7~9월 사이에 태풍의 직간접적인 영향을 받는다.   
+    
+    - label   
+    대만은 7~9월 사이에 태풍의 직간접적인 영향을 받는다.   
+
+- loss 1.2   
+    - inference   
+    앙겔라 메르켈 독일 총리 대변인은 불참 입장을 밝혔지만 리처드 슈세이 웨타인마이더 독일 외무장관은 메르켈 총리의 불참이 정치적 항의으로 성격은 아니라고 밝혔다.   
+    
+    - label   
+    앙겔라 메르켈 독일 총리 또한 불참 입장을 밝혔지만 프랑크 발터 슈타인마이더 독일 외무장관은 메르켈 총리의 불참이 정치적 항의의 성격은 아니라고 밝혔다.   
+    
+    
+loss 가 1.2 이하로 내려가지를 않는다.
