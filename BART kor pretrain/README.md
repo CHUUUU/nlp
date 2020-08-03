@@ -1,3 +1,6 @@
+# paper from    
+https://arxiv.org/abs/1910.13461   
+
 # data from 
 https://github.com/jungyeul/korean-parallel-corpora/tree/master/korean-english-news-v1
 
