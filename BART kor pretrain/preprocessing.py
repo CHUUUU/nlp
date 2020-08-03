@@ -32,7 +32,7 @@ import copy
 # - 모델이 범위에서 누락된 토큰 수를 예측하도록 지시합니다.
 
 
-def create_train_index_line(index_line, mask_token_index):
+def text_infilling(index_line, mask_token_index):
     train_index_line = copy.deepcopy(index_line)
     count_mask_token = 0
     for i, token in enumerate(index_line):
@@ -78,7 +78,7 @@ def get_index(spm, paths, mask_token_index):
             for line in tqdm(all_lines):
                 id_line = spm.encode(line).ids
                 index_lines.append(torch.tensor(id_line))
-                train_index_line.append(torch.tensor(create_train_index_line(id_line, mask_token_index)))
+                train_index_line.append(torch.tensor(text_infilling(id_line, mask_token_index)))
 
     index_lines_pad = pad_sequence(index_lines, batch_first=True, padding_value=0)
     train_index_line_pad = pad_sequence(train_index_line, batch_first=True, padding_value=0)
