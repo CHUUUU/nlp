@@ -4,6 +4,11 @@ https://github.com/jungyeul/korean-parallel-corpora/tree/master/korean-english-n
 # Transformer model code from 
 https://github.com/jadore801120/attention-is-all-you-need-pytorch
 
+# parameters   
+    - epoch 90   
+    - batch 32   
+    - layer 3   
+
 # result 
 - loss 10
     - inference   
