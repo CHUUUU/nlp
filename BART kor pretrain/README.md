@@ -15,7 +15,7 @@ https://github.com/jadore801120/attention-is-all-you-need-pytorch
     - GPU Nvidia RTX 2080 (8GB)
  
 # result 
-- loss 10
+- loss 10 (early step)   
     - inference   
     <bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos>
     
@@ -95,12 +95,17 @@ https://github.com/jadore801120/attention-is-all-you-need-pytorch
     - label   
     대만은 7~9월 사이에 태풍의 직간접적인 영향을 받는다.   
 
-- loss 1.2   
+- loss 1.2  (여기서부터 정체시작)
     - inference   
     앙겔라 메르켈 독일 총리 대변인은 불참 입장을 밝혔지만 리처드 슈세이 웨타인마이더 독일 외무장관은 메르켈 총리의 불참이 정치적 항의으로 성격은 아니라고 밝혔다.<bos>      
     
     - label   
     앙겔라 메르켈 독일 총리 또한 불참 입장을 밝혔지만 프랑크 발터 슈타인마이더 독일 외무장관은 메르켈 총리의 불참이 정치적 항의의 성격은 아니라고 밝혔다.   
     
+- loss 1.1 
+    - inference   
+    미국 노스웨스트 에어라인 소속 8 2일 발생한현지시간) 운행 중 문제를 일으켜 승객들이 위험에 노출되는 사고가 발생했다.   
     
-loss 가 1.2 이하로 내려가지를 않는다.
+    - label   
+    미국 노스웨스트 에어라인 소속 항공기가 6일(현지시간) 운행 중 문제를 일으켜 승객들이 위험에 노출되 는 사고가 발생했다.   
+
