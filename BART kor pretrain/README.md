@@ -2,7 +2,9 @@
 https://arxiv.org/abs/1910.13461   
 
 # data from 
-https://github.com/jungyeul/korean-parallel-corpora/tree/master/korean-english-news-v1
+https://github.com/jungyeul/korean-parallel-corpora/tree/master/korean-english-news-v1   
+
+https://github.com/e9t/nsmc   
 
 # Transformer model code from 
 https://github.com/jadore801120/attention-is-all-you-need-pytorch
