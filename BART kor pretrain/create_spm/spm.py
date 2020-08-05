@@ -17,8 +17,8 @@ def save_sentense_piece_model():
 def load_sentence_piece_model(path_vocab, path_model):
     tokenizer = ByteLevelBPETokenizer(path_vocab, path_model)
     tokenizer._tokenizer.post_processor = BertProcessing(
-        ("<bos>", tokenizer.token_to_id("<bos>")),
-        ("<eos>", tokenizer.token_to_id("<eos>"))
+        ("<eos>", tokenizer.token_to_id("<eos>")),
+        ("<bos>", tokenizer.token_to_id("<bos>"))
     )
 
     tokenizer.enable_truncation(max_length=512)

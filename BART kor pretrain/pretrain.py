@@ -9,6 +9,7 @@ import os
 from preprocessing import custom_dataset
 
 batch_size = 32
+eos_token_id = 2
 model_path = "model.pth"
 
 if __name__ == "__main__":
@@ -49,7 +50,7 @@ if __name__ == "__main__":
     loss_function = nn.CrossEntropyLoss(ignore_index=0)
 
     if os.path.isfile(model_path):
-        print("model exist")
+        print("pretrain model exist")
         checkpoint = torch.load("model.pth")
         model.load_state_dict(checkpoint['model_state_dict'])
         optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
@@ -77,27 +78,27 @@ if __name__ == "__main__":
             if step % 200 == 0:
                 print("epoch : ", epoch, " step : ", step, " loss : ", loss.item())
 
-            if step % 1000 == 0:
+            if step % 3000 == 0:
                 for n, (ko_enc, ko_dec, ko_tar) in enumerate(test_data_loader):
+                    
                     out = model(ko_enc.cuda(), ko_dec.cuda())
-
                     _, pred = torch.max(out.data, 1)
 
                     ko_tar = ko_tar.view(-1)
 
                     if n == 0:
-                        # BOS 1 이후 토큰 부터 제거  
+                        # EOS 이후 토큰 부터 제거  
                         pred_0 = pred.view(batch_size, -1)[0].tolist()
                         new_pred_0 = []
                         for token_index in pred_0:
-                            if token_index == 1:  # BOS Token index
+                            if token_index == eos_token_id: 
                                 break
                             new_pred_0.append(token_index)
 
                         ko_tar_0 = ko_tar.view(batch_size, -1)[0].tolist()
                         new_ko_tar_0 = []
                         for token_index in ko_tar_0:
-                            if token_index == 1:  # BOS Token index
+                            if token_index == eos_token_id: 
                                 break
                             new_ko_tar_0.append(token_index)
 

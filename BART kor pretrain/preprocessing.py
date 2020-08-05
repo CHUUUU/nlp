@@ -89,14 +89,11 @@ class custom_dataset(Dataset):
     # def __init__(self, ko_spm, en_spm, ko_paths, en_paths):
     def __init__(self, ko_spm, ko_paths, mask_token_index):
         self.ko_dataset, self.ko_dataset_train = get_index(ko_spm, ko_paths, mask_token_index)
-        # self.en_dataset = get_index(en_spm, en_paths)
 
     def __getitem__(self, idx):
         ko_enc_input = self.ko_dataset_train[idx]
         ko_dec_input = self.ko_dataset[idx, :-1]
         ko_dec_target = self.ko_dataset[idx, 1:]
-        # en_dec_input = self.en_dataset[idx, :-1]
-        # en_dec_target = self.en_dataset[idx, 1:]
 
         return ko_enc_input, ko_dec_input, ko_dec_target
 

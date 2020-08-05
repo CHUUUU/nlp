@@ -18,16 +18,17 @@ class binary_classification(nn.Module):
             for p in self.bart.parameters():
                 p.requires_grad = False
         
-        self.cls_layer = nn.Linear(self.vocab_size, 1)
+        self.cls_layer = nn.Linear(self.vocab_size, 2)
+        # self.sigmoid = nn.Sigmoid()
 
     def forward(self, ko_enc, ko_dec, last_token_position, batch_size):
         with torch.no_grad():
             bart_logit = self.bart(ko_enc, ko_dec)   # bart_logit.shape : [8160, 32000] -> [batch(32) * (256-1)255, vocab_size]\
             bart_logit = bart_logit.view(batch_size, max_seq-1, self.vocab_size)  # bart_logit.shape : torch.Size([32, 255, 32000])
         
-        final_logit = torch.empty(size=(batch_size, self.vocab_size)).cuda()  # torch.Size([32, 32000])
+        final_logit = torch.empty(size=(batch_size, self.vocab_size), requires_grad=True).cuda()  # torch.Size([32, 32000])
         for i in range(batch_size):
-            final_logit[i] = bart_logit[i, last_token_position[i]]
+            final_logit[i] = bart_logit[i, (last_token_position[i]-1)]  # if last token position = 255, out of  
 
         cls_logit = self.cls_layer(final_logit)  # cls_label.shape :  torch.Size([32])
         return cls_logit
@@ -67,15 +68,10 @@ class nsmc_dataset(Dataset):
     def __getitem__(self, idx):
         ko_enc_input = self.ko_train_data[idx]
         ko_dec_input = self.ko_train_data[idx, :-1]
-        ko_dec_target = self.cls_label[idx]
+        cls_label = self.cls_label[idx]
         last_token_position = self.last_token_position[idx]
 
-        return ko_enc_input, ko_dec_input, ko_dec_target, last_token_position
+        return ko_enc_input, ko_dec_input, cls_label, last_token_position
 
     def __len__(self):
         return len(self.ko_train_data)
-
-# import create_spm.spm as spm
-# ko_spm, en_spm = spm.get_spm()
-# ko_vocab_size = ko_spm.get_vocab_size()
-# a = nsmc_dataset(ko_spm)
