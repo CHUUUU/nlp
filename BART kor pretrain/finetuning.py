@@ -2,7 +2,6 @@ import transformer
 import create_spm.spm as spm
 from torch.utils.data import DataLoader
 import torch
-# import torch.nn as nn
 from torch import nn
 import os
 import numpy as np
@@ -49,28 +48,31 @@ if __name__ == "__main__":
     
     # pretrain model load
     model = torch.nn.DataParallel(model, device_ids=[0]).cuda()
-    model = model.cuda()
-    if os.path.isfile(model_path):
-        print("pretrain model exist")
-        checkpoint = torch.load(model_path)
-        model.load_state_dict(checkpoint['model_state_dict'])
-        model.train()
-    
+
     # fine-tuning model
-    finetuning_model = binary_classification(bart_model=model, freeze_bart=True, vocab_size=ko_vocab_size)
-    finetuning_model = torch.nn.DataParallel(finetuning_model, device_ids=[0]).cuda()
-    optimizer = torch.optim.Adam(finetuning_model.parameters(), lr=0.0015)
+    finetuning_model = binary_classification(bart_model=model, freeze_bart=False, vocab_size=ko_vocab_size)
+    finetuning_model = finetuning_model.cuda()
+    optimizer = torch.optim.Adam([{"params" : finetuning_model.bart.parameters()},
+                                {"params" : finetuning_model.cls_layer.parameters()}], lr=0.0015)
     loss_function = nn.CrossEntropyLoss()
     if os.path.isfile(finetuning_model_path):
         print("finetuning model exist")
         checkpoint = torch.load(finetuning_model_path)
-        model.load_state_dict(checkpoint['model_state_dict'])
+        model.load_state_dict(checkpoint['model_state_dict_pretrain'])
+        finetuning_model.load_state_dict(checkpoint['model_state_dict_finetuning'])  
         optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
         epoch = checkpoint['epoch']
         loss = checkpoint['loss']
         acc = checkpoint['acc']
         print("previous epoch : ", epoch, " loss : ", loss, "acc : ", acc)
         model.train()
+        finetuning_model.train()
+    else:
+        if os.path.isfile(model_path):
+            print("pretrain model exist")
+            checkpoint = torch.load(model_path)
+            model.load_state_dict(checkpoint['model_state_dict'])
+            model.train()
 
     # train
     acc_test_list = []
@@ -100,7 +102,7 @@ if __name__ == "__main__":
                         ko_enc = ko_enc.view(batch_size, -1)[0].tolist()
                         new_ko_tar_0 = []
                         for token_index in ko_enc:
-                            if token_index == eos_token_id: 
+                            if token_index == eos_token_id: # eos 부터 제거
                                 break
                             new_ko_tar_0.append(token_index)
                         print(ko_spm.decode(new_ko_tar_0))
@@ -109,13 +111,11 @@ if __name__ == "__main__":
                         # out = model(ko_enc.cuda(), ko_dec.cuda())
                         # _, pred = torch.max(out.data, 1)
 
-                        # # BOS 1 이후 토큰 부터 제거  
                         # pred_0 = pred.view(batch_size, -1)[0].tolist()
                         # new_pred_0 = []
                         # # print(pred_0)
                         # for token_index in pred_0:
-
-                        #     if token_index == eos_token_id:  
+                        #     if token_index == eos_token_id:  # eos 부터 제거
                         #         break
                         #     new_pred_0.append(token_index)
                         # print(ko_spm.decode(new_pred_0))
@@ -126,15 +126,16 @@ if __name__ == "__main__":
                 
                     # ACC
                     _, pred = torch.max(cls_out.data, 1)
-                    total += len(pred) # batch size
-                    correct += np.array((pred.cpu() == cls_label)).sum() 
+                    total += len(cls_label) # batch size
+                    correct += np.array((pred.data.cpu() == cls_label)).sum() 
                 acc = 100 * (correct/total)
                 acc_test_list.append(acc)
                 print("acc : ", acc)
 
                 torch.save({
                     'epoch': epoch,
-                    'model_state_dict': model.state_dict(),
+                    'model_state_dict_pretrain': model.state_dict(),
+                    'model_state_dict_finetuning': finetuning_model.state_dict(),
                     'optimizer_state_dict': optimizer.state_dict(),
                     'loss': loss,
                     'acc': acc

@@ -22,15 +22,15 @@ class binary_classification(nn.Module):
         # self.sigmoid = nn.Sigmoid()
 
     def forward(self, ko_enc, ko_dec, last_token_position, batch_size):
-        with torch.no_grad():
-            bart_logit = self.bart(ko_enc, ko_dec)   # bart_logit.shape : [8160, 32000] -> [batch(32) * (256-1)255, vocab_size]\
-            bart_logit = bart_logit.view(batch_size, max_seq-1, self.vocab_size)  # bart_logit.shape : torch.Size([32, 255, 32000])
+        bart_logit = self.bart(ko_enc, ko_dec)   # bart_logit.shape : [8160, 32000] -> [batch(32) * (256-1)255, vocab_size]\
+        bart_logit = bart_logit.view(batch_size, max_seq-1, self.vocab_size)  # bart_logit.shape : torch.Size([32, 255, 32000])
         
         final_logit = torch.empty(size=(batch_size, self.vocab_size), requires_grad=True).cuda()  # torch.Size([32, 32000])
         for i in range(batch_size):
-            final_logit[i] = bart_logit[i, (last_token_position[i]-1)]  # if last token position = 255, out of  
+            final_logit[i] = bart_logit[i, (last_token_position[i]-1)]  # if last token position = 255, out of index
 
         cls_logit = self.cls_layer(final_logit)  # cls_label.shape :  torch.Size([32])
+        # cls_logit = self.cls_layer(bart_logit[:, -1])
         return cls_logit
 
 
