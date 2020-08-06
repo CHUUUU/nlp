@@ -16,7 +16,7 @@ https://github.com/jadore801120/attention-is-all-you-need-pytorch
     - I cut all layer's units in half.
     - GPU Nvidia RTX 2080 (8GB)
  
-# result 
+# pretrain result 
 - loss 10 (early step)   
     - inference   
     <bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos><bos>
@@ -135,3 +135,10 @@ https://github.com/jadore801120/attention-is-all-you-need-pytorch
 loss 가 0.9 이하로 잘 떨어지지 않는다.   
 짧은 길이의 문장은 잘 뭊추는 반면 긴문장은 잘 맞추지 못한다.    
 오랜 학습이 필요하거나, 더 많은 데이터, 또는 더 큰 모델이 필요할 것으로 보인다.   
+
+
+# fine-tuning result   
+3000 step (32 batch)   
+    - acc : 77.775   
+6000 step    
+    - acc 81.557   
