@@ -45,11 +45,11 @@ if __name__ == "__main__":
                                     emb_src_trg_weight_sharing=True)
 
 
-    # model = torch.nn.DataParallel(model, device_ids=[0]).cuda()
-    model = model.cuda()
+    model = torch.nn.DataParallel(model, device_ids=[0]).cuda()
     optimizer = torch.optim.Adam(model.parameters(), lr=0.00015)
     loss_function = nn.CrossEntropyLoss(ignore_index=0)
 
+    # load
     if os.path.isfile(model_path):
         print("pretrain model exist")
         checkpoint = torch.load("model.pth")

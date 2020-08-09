@@ -51,6 +51,8 @@ if __name__ == "__main__":
     optimizer = torch.optim.Adam([{"params" : finetuning_model.bart.parameters()},
                                 {"params" : finetuning_model.cls_layer.parameters()}], lr=0.0015)
     loss_function = nn.CrossEntropyLoss()
+    
+    # model load
     if os.path.isfile(finetuning_model_path):
         print("finetuning model exist")
         checkpoint = torch.load(finetuning_model_path)
