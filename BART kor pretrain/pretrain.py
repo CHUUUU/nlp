@@ -60,16 +60,17 @@ if __name__ == "__main__":
         print("previous epoch : ", epoch, " loss : ", loss)
         model.train()
 
-    # train
+    
     acc_test_list = []
     step = 0
     for epoch in range(100):
         for n, (ko_enc, ko_dec, ko_tar) in enumerate(train_data_loader):
+            
+            # train
             optimizer.zero_grad()
             logit = model(ko_enc.cuda(), ko_dec.cuda())
 
-            # batch flat
-            ko_tar = ko_tar.view(-1)
+            ko_tar = ko_tar.view(-1) # batch flat
 
             loss = loss_function(logit, ko_tar.cuda())
             loss.backward()
@@ -79,6 +80,7 @@ if __name__ == "__main__":
             if step % 200 == 0:
                 print("epoch : ", epoch, " step : ", step, " loss : ", loss.item())
 
+            # test
             if step % 3000 == 0:
                 for n, (ko_enc, ko_dec, ko_tar) in enumerate(test_data_loader):
                     

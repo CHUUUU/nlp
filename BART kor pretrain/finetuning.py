@@ -45,13 +45,9 @@ if __name__ == "__main__":
                                     trg_emb_prj_weight_sharing=True,
                                     emb_src_trg_weight_sharing=True)
 
-    
-    # pretrain model load
     model = torch.nn.DataParallel(model, device_ids=[0]).cuda()
 
-    # fine-tuning model
-    finetuning_model = binary_classification(bart_model=model, freeze_bart=False, vocab_size=ko_vocab_size)
-    finetuning_model = finetuning_model.cuda()
+    finetuning_model = binary_classification(bart_model=model, freeze_bart=False, vocab_size=ko_vocab_size).cuda()
     optimizer = torch.optim.Adam([{"params" : finetuning_model.bart.parameters()},
                                 {"params" : finetuning_model.cls_layer.parameters()}], lr=0.0015)
     loss_function = nn.CrossEntropyLoss()
@@ -67,18 +63,21 @@ if __name__ == "__main__":
         print("previous epoch : ", epoch, " loss : ", loss, "acc : ", acc)
         model.train()
         finetuning_model.train()
+    elif os.path.isfile(model_path):
+        print("pretrain model exist")
+        checkpoint = torch.load(model_path)
+        model.load_state_dict(checkpoint['model_state_dict'])
+        model.train()
     else:
-        if os.path.isfile(model_path):
-            print("pretrain model exist")
-            checkpoint = torch.load(model_path)
-            model.load_state_dict(checkpoint['model_state_dict'])
-            model.train()
+        print("no model")
 
-    # train
+   
     acc_test_list = []
     step = 0
     for epoch in range(100):
-        for n, (ko_enc, ko_dec, cls_label, last_token_position) in enumerate(train_data_loader):
+        for n, (ko_enc, ko_dec, cls_label, last_token_position) in enumerate(train_data_loader):       
+            
+            # train
             optimizer.zero_grad()
             logit = finetuning_model(ko_enc.cuda(), ko_dec.cuda(), last_token_position.cuda(), batch_size)
 
@@ -90,9 +89,10 @@ if __name__ == "__main__":
             if step % 200 == 0:
                 print("epoch : ", epoch, " step : ", step, " loss : ", loss.item())
 
+            # test
             total = 0
             correct = 0
-            if step % 3000 == 0:
+            if step % 1000 == 0:
                 for n, (ko_enc, ko_dec, cls_label, last_token_position) in enumerate(test_data_loader):
                     
                     cls_out = finetuning_model(ko_enc.cuda(), ko_dec.cuda(), last_token_position.cuda(), batch_size)
@@ -110,7 +110,6 @@ if __name__ == "__main__":
                         # language_model inference
                         # out = model(ko_enc.cuda(), ko_dec.cuda())
                         # _, pred = torch.max(out.data, 1)
-
                         # pred_0 = pred.view(batch_size, -1)[0].tolist()
                         # new_pred_0 = []
                         # # print(pred_0)
@@ -134,10 +133,10 @@ if __name__ == "__main__":
 
                 torch.save({
                     'epoch': epoch,
-                    'model_state_dict_pretrain': model.state_dict(),
-                    'model_state_dict_finetuning': finetuning_model.state_dict(),
+                    'model_state_dict_pretrain': finetuning_model.bart.state_dict(),
+                    'model_state_dict_finetuning': finetuning_model.cls_layer.state_dict(),
                     'optimizer_state_dict': optimizer.state_dict(),
-                    'loss': loss,
+                    'loss': loss.data,
                     'acc': acc
                 }, finetuning_model_path)
                 print("model save")
