@@ -19,7 +19,6 @@ class binary_classification(nn.Module):
                 p.requires_grad = False
         
         self.cls_layer = nn.Linear(self.vocab_size, 2)
-        # self.sigmoid = nn.Sigmoid()
 
     def forward(self, ko_enc, ko_dec, last_token_position, batch_size):
         bart_logit = self.bart(ko_enc, ko_dec)   # bart_logit.shape : [8160, 32000] -> [batch(32) * (256-1)255, vocab_size]\
@@ -27,10 +26,9 @@ class binary_classification(nn.Module):
         
         final_logit = torch.empty(size=(batch_size, self.vocab_size), requires_grad=True).cuda()  # torch.Size([32, 32000])
         for i in range(batch_size):
-            final_logit[i] = bart_logit[i, (last_token_position[i]-1)]  # if last token position = 255, out of index
+            final_logit[i] = bart_logit[i, (last_token_position[i]-1)]  # if last token position = 255, out of index, so put -1
 
         cls_logit = self.cls_layer(final_logit)  # cls_label.shape :  torch.Size([32])
-        # cls_logit = self.cls_layer(bart_logit[:, -1])
         return cls_logit
 
 
