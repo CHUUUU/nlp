@@ -56,8 +56,8 @@ if __name__ == "__main__":
     if os.path.isfile(finetuning_model_path):
         print("finetuning model exist")
         checkpoint = torch.load(finetuning_model_path)
-        model.load_state_dict(checkpoint['model_state_dict_pretrain'])
-        finetuning_model.load_state_dict(checkpoint['model_state_dict_finetuning'])  
+        finetuning_model.bart.load_state_dict(checkpoint['model_state_dict_pretrain'])
+        finetuning_model.cls_layer.load_state_dict(checkpoint['model_state_dict_finetuning'])  
         optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
         epoch = checkpoint['epoch']
         loss = checkpoint['loss']
@@ -94,7 +94,7 @@ if __name__ == "__main__":
             # test
             total = 0
             correct = 0
-            if step % 1000 == 0:
+            if step % 2000 == 0:
                 for n, (ko_enc, ko_dec, cls_label, last_token_position) in enumerate(test_data_loader):
                     
                     cls_out = finetuning_model(ko_enc.cuda(), ko_dec.cuda(), last_token_position.cuda(), batch_size)
