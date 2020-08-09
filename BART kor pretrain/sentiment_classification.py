@@ -26,7 +26,7 @@ class binary_classification(nn.Module):
         
         final_logit = torch.empty(size=(batch_size, self.vocab_size), requires_grad=True).cuda()  # torch.Size([32, 32000])
         for i in range(batch_size):
-            final_logit[i] = bart_logit[i, (last_token_position[i]-1)]  # if last token position = 255, out of index
+            final_logit[i] = bart_logit[i, (last_token_position[i]-1)]  # if last token position = 255, out of index, so put -1
 
         cls_logit = self.cls_layer(final_logit)  # cls_label.shape :  torch.Size([32])
         return cls_logit
