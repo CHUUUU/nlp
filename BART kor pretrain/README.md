@@ -137,7 +137,7 @@ loss 가 0.9 이하로 잘 떨어지지 않는다.
 오랜 학습이 필요하거나, 더 많은 데이터, 또는 더 큰 모델이 필요할 것으로 보인다.   
 
 
-# fine-tuning result   
+# fine-tuning result (네이버 영화 감정 분류)    
 3000 step (32 batch)   
     - acc : 77.775   
 6000 step    
