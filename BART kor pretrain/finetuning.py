@@ -99,12 +99,13 @@ if __name__ == "__main__":
                     
                     cls_out = finetuning_model(ko_enc.cuda(), ko_dec.cuda(), last_token_position.cuda(), batch_size)
                     
+                    # check a result with test batch[0]
                     if n == 0:
                         # original input
                         ko_enc = ko_enc.view(batch_size, -1)[0].tolist()
                         new_ko_tar_0 = []
                         for token_index in ko_enc:
-                            if token_index == eos_token_id: # eos 부터 제거
+                            if token_index == eos_token_id: # <EOS> 이후 모든 토큰 제거  
                                 break
                             new_ko_tar_0.append(token_index)
                         print(ko_spm.decode(new_ko_tar_0))

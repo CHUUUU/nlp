@@ -89,12 +89,12 @@ if __name__ == "__main__":
 
                     ko_tar = ko_tar.view(-1)
 
+                    # check a result with test batch[0]
                     if n == 0:
-                        # EOS 이후 토큰 부터 제거  
                         pred_0 = pred.view(batch_size, -1)[0].tolist()
                         new_pred_0 = []
                         for token_index in pred_0:
-                            if token_index == eos_token_id: 
+                            if token_index == eos_token_id: # <EOS> 부터 제거  
                                 break
                             new_pred_0.append(token_index)
 
