@@ -19,7 +19,6 @@ class binary_classification(nn.Module):
                 p.requires_grad = False
         
         self.cls_layer = nn.Linear(self.vocab_size, 2)
-        # self.sigmoid = nn.Sigmoid()
 
     def forward(self, ko_enc, ko_dec, last_token_position, batch_size):
         bart_logit = self.bart(ko_enc, ko_dec)   # bart_logit.shape : [8160, 32000] -> [batch(32) * (256-1)255, vocab_size]\
