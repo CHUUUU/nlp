@@ -30,7 +30,6 @@ class binary_classification(nn.Module):
             final_logit[i] = bart_logit[i, (last_token_position[i]-1)]  # if last token position = 255, out of index
 
         cls_logit = self.cls_layer(final_logit)  # cls_label.shape :  torch.Size([32])
-        # cls_logit = self.cls_layer(bart_logit[:, -1])
         return cls_logit
 
 
