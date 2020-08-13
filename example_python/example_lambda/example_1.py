@@ -8,7 +8,7 @@ print(list(map(lambda x: 0, [1, 2, 3])))
 # [0, 0, 0]
 
 print(list(map(lambda x, y: x*y, [1, 2, 3], [1, 2, 3])))  
-# map 은 반복, 리스트를 인자로 받음
+# map 은 반복으로 처리하므로, 함수와, 리스트를 인자로 받음
 # r = map(function, iterable, ...)
 # [1, 4, 9]
 
